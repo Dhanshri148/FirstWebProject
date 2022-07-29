@@ -9,5 +9,11 @@ namespace LMS.Web.Areas.Demos.Controllers
         {
             return Ok("Hello World");
         }
+
+
+        public IActionResult Index2()
+        {
+            return View();
+        }
     }
 }
