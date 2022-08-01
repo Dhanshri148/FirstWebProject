@@ -33,6 +33,7 @@ namespace LMS.Web.Areas.Demos.Controllers
             if (ModelState.IsValid)
             {
                 // update the database!
+                return View("Message");
             }
 
             // 5. Audit Logging 
