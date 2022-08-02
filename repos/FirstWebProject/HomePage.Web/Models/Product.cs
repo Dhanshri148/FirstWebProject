@@ -2,31 +2,29 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LMS.Web.Models
+namespace HomePage.Web.Models
 {
-    [Table(name: "Books")]
-    public class Book
+    [Table(name: "Products")]
+    public class Product
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]   
-        public int BookId { get; set; }
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ProductId { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public string BookTitle { get; set; }
-
-        [Required]
-        [DefaultValue(1)]
-        public short NumberOfCopies { get; set; }
+        [StringLength(50)]
+        public string ProductName { get; set; }
 
         [Required]
         [DefaultValue(false)]
-        public bool IsEnabled { get; set; }
+        public bool IsAvailable { get; set; }
+
 
         #region Navigation Properties to the Category Model
         public int CategoryId { get; set; }
 
-        [ForeignKey(nameof(Book.CategoryId))]
+        [ForeignKey(nameof(Product.CategoryId))]
         public Category Category { get; set; }
 
         #endregion

@@ -28,7 +28,7 @@ namespace LMS.Web
         {
             services.AddDbContext<ApplicationDbContext>((options) =>
             {
-                options.UseSqlServer("MyDefaultConnectionString");
+                options.UseSqlServer(Configuration.GetConnectionString("MyDefaultConnectionString"));
             });
             services.AddRazorPages();
         }
