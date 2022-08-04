@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LMS.Web.Data;
 using LMS.Web.Models;
+using Microsoft.Extensions.Logging;
 
 namespace LMS.Web.Areas.Books.Controllers
 {
@@ -14,15 +15,20 @@ namespace LMS.Web.Areas.Books.Controllers
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<CategoriesController> _logger;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(
+            ApplicationDbContext context,
+            ILogger<CategoriesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Books/Categories
         public async Task<IActionResult> Index()
         {
+            _logger.LogInformation("--------- Retrieved all categories from the database");
             return View(await _context.Categories.ToListAsync());
         }
 
@@ -55,15 +61,26 @@ namespace LMS.Web.Areas.Books.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryName")] Category categoryModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                categoryModel.CategoryName = categoryModel.CategoryName.Trim();
+
+                bool isDuplicateFound
+                    = _context.Categories.Any(c => c.CategoryName == categoryModel.CategoryName);
+
+                if (isDuplicateFound)
+                {
+                    ModelState.AddModelError("CategoryName", "Duplicate! Another category with same name exists");
+                }
+                else {
+                    _context.Add(categoryModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            return View(category);
+            return View(categoryModel);
         }
 
         // GET: Books/Categories/Edit/5
@@ -87,34 +104,52 @@ namespace LMS.Web.Areas.Books.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName")] Category category)
+        public async Task<IActionResult> Edit(
+            int id, 
+            [Bind("CategoryId,CategoryName")] Category categoryInputModel)
         {
-            if (id != category.CategoryId)
+            if (id != categoryInputModel.CategoryId)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                try
+                categoryInputModel.CategoryName = categoryInputModel.CategoryName.Trim();
+
+                bool isDuplicateFound
+                    = _context.Categories.Any(c => c.CategoryName == categoryInputModel.CategoryName
+                                                    && c.CategoryId != categoryInputModel.CategoryId);
+                if (isDuplicateFound)
                 {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    ModelState.AddModelError("CategoryName", "A duplicate category was found!");
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!CategoryExists(category.CategoryId))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(categoryInputModel);
+
+                        await _context.SaveChangesAsync();
+
+                        return RedirectToAction(nameof(Index));
+
                     }
-                    else
+
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!CategoryExists(categoryInputModel.CategoryId))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(categoryInputModel);
         }
 
         // GET: Books/Categories/Delete/5
@@ -126,7 +161,7 @@ namespace LMS.Web.Areas.Books.Controllers
             }
 
             var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+                .SingleOrDefaultAsync(m => m.CategoryId == id);
             if (category == null)
             {
                 return NotFound();
@@ -141,7 +176,12 @@ namespace LMS.Web.Areas.Books.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Categories.FindAsync(id);
+            if(category == null)
+            {
+                return NotFound();
+            }
             _context.Categories.Remove(category);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

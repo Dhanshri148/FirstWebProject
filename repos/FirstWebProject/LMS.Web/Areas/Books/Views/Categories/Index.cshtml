@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<LMS.Web.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List of Categories";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,6 +12,9 @@
 <table class="table">
     <thead>
         <tr>
+             <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
@@ -21,6 +24,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>

@@ -9,22 +9,22 @@ namespace LMS.Web.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]   
-        public int BookId { get; set; }
+        virtual public int BookId { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string BookTitle { get; set; }
+        virtual public string BookTitle { get; set; }
 
         [Required]
         [DefaultValue(1)]
-        public short NumberOfCopies { get; set; }
+        virtual public short NumberOfCopies { get; set; }
 
         [Required]
         [DefaultValue(false)]
-        public bool IsEnabled { get; set; }
+        virtual public bool IsEnabled { get; set; }
 
         #region Navigation Properties to the Category Model
-        public int CategoryId { get; set; }
+        virtual public int CategoryId { get; set; }
 
         [ForeignKey(nameof(Book.CategoryId))]
         public Category Category { get; set; }

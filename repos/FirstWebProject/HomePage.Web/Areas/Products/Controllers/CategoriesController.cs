@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HomePage.Web.Data;
 using HomePage.Web.Models;
+using Microsoft.Extensions.Logging;
 
-namespace HomePage.Web.Areas.Product.Controllers
+namespace HomePage.Web.Areas.Products.Controllers
 {
-    [Area("Product")]
+    [Area("Products")]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<CategoriesController> _logger;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(
+            ApplicationDbContext context,
+            ILogger<CategoriesController> logger)
         {
+            _logger = logger;
             _context = context;
         }
 
@@ -31,6 +36,7 @@ namespace HomePage.Web.Areas.Product.Controllers
         {
             if (id == null)
             {
+                _logger.LogInformation("--------- Retrieved all categories from the database");
                 return NotFound();
             }
 

@@ -9,11 +9,13 @@ namespace HomePage.Web.Models
     { 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name ="Category ID")]
         public int CategoryId { get; set;}
 
 
         [Required]
         [Column(TypeName = "varchar(50)")]
+        [Display(Name ="Name of the Category")]
         public string CategoryName { get; set; }
 
         #region Navigation Properties to the Product Model

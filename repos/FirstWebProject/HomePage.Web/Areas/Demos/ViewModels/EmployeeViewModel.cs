@@ -24,7 +24,7 @@ namespace HomePage.Web.Areas.Demos.ViewModels
         [Range(minimum: 0, maximum: 200000, ErrorMessage = "{0} has to be between {1} and {2}")]
         public decimal Salary { get; set; }
 
-        [Display(Name = "Is Employee aloowed to login")]
+        [Display(Name = "Is Employee allowed to login")]
         public bool IsEnabled { get; set; }
 
     }

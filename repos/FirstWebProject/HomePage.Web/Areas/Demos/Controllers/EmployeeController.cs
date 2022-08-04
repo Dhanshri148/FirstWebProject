@@ -42,11 +42,7 @@ namespace HomePage.Web.Areas.Demos.Controllers
             return View();
         }
 
-        public IActionResult Index2(EmployeeViewModel viewModel)
-        {
-            return View("Message2");
-        }
-
+        
     }
       
 }

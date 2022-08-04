@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Books\ViewModels\" />
     <Folder Include="Areas\Demos\Models\" />
   </ItemGroup>
 

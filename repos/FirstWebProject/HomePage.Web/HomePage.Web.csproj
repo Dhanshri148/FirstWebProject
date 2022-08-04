@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Demos\Models\" />
-    <Folder Include="Areas\Products\ViewModels\" />
   </ItemGroup>
 
 </Project>

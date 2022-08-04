@@ -10,19 +10,19 @@ namespace HomePage.Web.Models
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ProductId { get; set; }
+        virtual public int ProductId { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string ProductName { get; set; }
+        virtual public string ProductName { get; set; }
 
         [Required]
         [DefaultValue(false)]
-        public bool IsAvailable { get; set; }
+        virtual public bool IsAvailable { get; set; }
 
 
         #region Navigation Properties to the Category Model
-        public int CategoryId { get; set; }
+        virtual public int CategoryId { get; set; }
 
         [ForeignKey(nameof(Product.CategoryId))]
         public Category Category { get; set; }
