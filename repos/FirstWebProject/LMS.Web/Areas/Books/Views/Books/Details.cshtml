@@ -10,34 +10,37 @@
 <div>
     <h4>Book</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BookTitle)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BookTitle)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberOfCopies)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumberOfCopies)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsEnabled)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsEnabled)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.CategoryName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.BookId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+ <div class="card" style="width:50%">
+        <div class="card-title text-center">
+            <h2>@Html.DisplayFor(model => model.Category.CategoryName)</h2>
+        </div>
+        <img class="card-img-top" src="@Model.ImageUrl" alt="@Model.BookTitle" 
+             style="max-height: 300px;">
+        <div class="card-body">
+            <h4 class="card-title">@Model.BookTitle</h4>
+            <div class="row">
+                <div class="col card-text">
+                    @Html.DisplayNameFor(model => model.NumberOfCopies)
+                </div>
+                <div class="col card-text">
+                    @Html.DisplayFor(model => model.NumberOfCopies)
+                </div>
+            </div>
+             <div class="row">
+                <div class="col card-text">
+                    @Html.DisplayNameFor(model => model.IsEnabled)
+                </div>
+                <div class="col card-text">
+                    @Html.DisplayFor(model => model.IsEnabled)
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-primary">Edit</a>
+            &nbsp;|&nbsp;
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+</div>    

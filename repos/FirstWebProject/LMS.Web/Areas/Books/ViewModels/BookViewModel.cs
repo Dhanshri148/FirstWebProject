@@ -49,5 +49,12 @@ namespace LMS.Web.Areas.Books.ViewModels
             set => base.CategoryId = value;
         }
 
+        [Display(Name ="Cover Photo of the Book")]
+        public override string ImageUrl
+        {
+            get => base.ImageUrl;
+            set => base.ImageUrl = value;
+        }
+
     }
 }

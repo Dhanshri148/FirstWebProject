@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<LMS.Web.Models.Book>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List of Books";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Book</a>
 </p>
-<table class="table">
+<table class="table table-hover" >
     <thead>
         <tr>
             <th>

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LMS.Web.Data;
 using LMS.Web.Models;
+using LMS.Web.Areas.Books.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace LMS.Web.Areas.Books.Controllers
 {
@@ -14,17 +16,24 @@ namespace LMS.Web.Areas.Books.Controllers
     public class BooksController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<BooksController> _logger;
 
-        public BooksController(ApplicationDbContext context)
+        public BooksController(ApplicationDbContext context,ILogger<BooksController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Books/Books
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Books.Include(b => b.Category);
-            return View(await applicationDbContext.ToListAsync());
+            _logger.LogInformation("-------- Retrieve details of the Book along with the Associated Category from the database");
+
+            var viewmodels = await _context.Books
+                                                .Include(b => b.Category)
+                                                .ToListAsync();
+
+            return View(viewmodels);
         }
 
         // GET: Books/Books/Details/5
@@ -37,13 +46,25 @@ namespace LMS.Web.Areas.Books.Controllers
 
             var book = await _context.Books
                 .Include(b => b.Category)
+                .Include(b => b.Authors)
                 .FirstOrDefaultAsync(m => m.BookId == id);
             if (book == null)
             {
                 return NotFound();
             }
+            BookViewModel viewModel = new BookViewModel()
+            {
+                BookId = book.BookId,
+                BookTitle=book.BookTitle,
+                ImageUrl=book.ImageUrl,
+                IsEnabled = book.IsEnabled,
+                NumberOfCopies=book.NumberOfCopies,
+                CategoryId=book.CategoryId,
+                Category = book.Category,
 
-            return View(book);
+            };
+
+            return View(viewModel);
         }
 
         // GET: Books/Books/Create
@@ -58,7 +79,7 @@ namespace LMS.Web.Areas.Books.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookId,BookTitle,NumberOfCopies,IsEnabled,CategoryId")] Book book)
+        public async Task<IActionResult> Create([Bind("BookId,BookTitle,NumberOfCopies,IsEnabled,ImageUrl,CategoryId")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +105,19 @@ namespace LMS.Web.Areas.Books.Controllers
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", book.CategoryId);
-            return View(book);
+
+            var bookViewModel = new BookViewModel()
+            {
+                BookId = book.BookId,
+                BookTitle = book.BookTitle,
+                ImageUrl = book.ImageUrl,
+                IsEnabled = book.IsEnabled,
+                NumberOfCopies = book.NumberOfCopies,
+                CategoryId = book.CategoryId,
+                Category = book.Category,
+
+            };
+            return View(bookViewModel);
         }
 
         // POST: Books/Books/Edit/5
@@ -92,7 +125,7 @@ namespace LMS.Web.Areas.Books.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookId,BookTitle,NumberOfCopies,IsEnabled,CategoryId")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("BookId,BookTitle,NumberOfCopies,IsEnabled,ImageUrl,CategoryId")] Book book)
         {
             if (id != book.BookId)
             {
@@ -138,8 +171,18 @@ namespace LMS.Web.Areas.Books.Controllers
             {
                 return NotFound();
             }
+            var bookViewModel = new BookViewModel()
+            {
+                BookId = book.BookId,
+                BookTitle = book.BookTitle,
+                ImageUrl = book.ImageUrl,
+                IsEnabled = book.IsEnabled,
+                NumberOfCopies = book.NumberOfCopies,
+                CategoryId = book.CategoryId,
+                Category = book.Category,
 
-            return View(book);
+            };
+            return View(bookViewModel);
         }
 
         // POST: Books/Books/Delete/5

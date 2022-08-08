@@ -8,6 +8,11 @@ namespace WebsiteDemo.Web.Data
 
         public DbSet<Food> Foods { get; set; }
 
+        public DbSet<Order> Order { get; set; }
+       
+        public DbSet<Customer> Customer { get; set; }
+        
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
            : base(options)
         {
@@ -15,5 +20,6 @@ namespace WebsiteDemo.Web.Data
         }
 
         public DbSet<WebsiteDemo.Web.Models.Category> Category { get; set; }
+        public object Categories { get; internal set; }
     }
 }

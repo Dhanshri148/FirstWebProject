@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<WebsiteDemo.Web.Models.Food>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Foods List";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"] </h1>
 
-<p>
+<p style="background-color:mistyrose">
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" style="background-color:darksalmon">
     <thead>
         <tr>
             <th>

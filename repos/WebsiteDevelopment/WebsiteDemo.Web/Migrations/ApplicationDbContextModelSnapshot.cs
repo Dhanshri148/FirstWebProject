@@ -34,6 +34,31 @@ namespace WebsiteDemo.Web.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("WebsiteDemo.Web.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CustomerAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomerId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("WebsiteDemo.Web.Models.Food", b =>
                 {
                     b.Property<int>("FoodId")
@@ -49,6 +74,13 @@ namespace WebsiteDemo.Web.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<double>("FoodPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
@@ -59,11 +91,55 @@ namespace WebsiteDemo.Web.Migrations
                     b.ToTable("Foods");
                 });
 
+            modelBuilder.Entity("WebsiteDemo.Web.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FoodId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OrderName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("OrderStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("FoodId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("WebsiteDemo.Web.Models.Customer", b =>
+                {
+                    b.HasOne("WebsiteDemo.Web.Models.Order", "Order")
+                        .WithMany("Customers")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WebsiteDemo.Web.Models.Food", b =>
                 {
                     b.HasOne("WebsiteDemo.Web.Models.Category", "Category")
                         .WithMany("Foods")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebsiteDemo.Web.Models.Order", b =>
+                {
+                    b.HasOne("WebsiteDemo.Web.Models.Food", "Food")
+                        .WithMany("Orders")
+                        .HasForeignKey("FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

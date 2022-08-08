@@ -1,4 +1,5 @@
-﻿@model WebsiteDemo.Web.Models.Food
+﻿@* @model WebsiteDemo.Web.Models.Food*@
+@model WebsiteDemo.Web.Areas.Demos.ViewModels.FoodViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -12,20 +13,41 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
-                <label asp-for="FoodName" class="control-label"></label>
-                <input asp-for="FoodName" class="form-control" />
-                <span asp-validation-for="FoodName" class="text-danger"></span>
+                <label asp-for="FoodId" class="control-label"></label>
+                <input asp-for="FoodId" class="form-control" readonly="readonly" disabled="disabled"/>
+                <span asp-validation-for="FoodId" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="FoodName" class="control-label "></label>
+                <input asp-for="FoodName" class="form-control" />
+                <span asp-validation-for="FoodName" class="text-danger "></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label "></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger "></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FoodPrice" class="control-label "></label>
+                <input asp-for="FoodPrice" class="form-control" />
+                <span asp-validation-for="FoodPrice" class="text-danger "></span>
+            </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsAvailable" /> @Html.DisplayNameFor(model => model.IsAvailable)
                 </label>
             </div>
+
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
                 <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

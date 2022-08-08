@@ -29,7 +29,11 @@ namespace LMS.Web.Areas.Books.Controllers
         public async Task<IActionResult> Index()
         {
             _logger.LogInformation("--------- Retrieved all categories from the database");
-            return View(await _context.Categories.ToListAsync());
+
+            var viewmodels = await _context.Categories
+                                                    .Include(c => c.Books)
+                                                    .ToListAsync();
+            return View(viewmodels);
         }
 
         // GET: Books/Categories/Details/5

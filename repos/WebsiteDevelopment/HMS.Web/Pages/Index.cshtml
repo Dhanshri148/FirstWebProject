@@ -1,0 +1,122 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="text-center " style=" background-color:antiquewhite">
+
+    <h1 class="display-4">Welcome</h1>
+    <p>Know about <a href="https://www.chefspencil.com/50-famous-indian-foods/">Indian Food</a>.</p>
+</div>
+
+
+<title >Food Which We have</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<body style="background-color:lavenderblush" >
+<div class="container">
+  <center><h2>Food Which We Have</h2>  </center>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="https://i.pinimg.com/736x/10/31/7b/10317b1eb2d6df590aca903ec599ba2d--rajasthan-india-south-indian-foods.jpg" alt="Los Angeles" style="width:100%;">
+      </div>
+
+      <div class="item">
+      <img src="https://www.blueosa.com/wp-content/uploads/2020/01/the-best-top-10-indian-dishes.jpg" class="mx-auto d-block" style="width:100%"> 
+      </div>
+    
+      <div class="item">
+        <img src="https://assets.traveltriangle.com/blog/wp-content/uploads/2019/08/Masala-Dosa1.jpg" alt="New york" style="width:100%;">
+      </div>
+    </div>
+
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<br />
+<br />
+
+<center><p>What do You Want</p></center>
+<div>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+/* Create three equal columns that sits next to each other */
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
+</style>
+
+<div class="row">
+  <div class="column">
+    <a class=" dropdown-item"
+                  asp-area="Foods" asp-controller="Orders" asp-action="create">
+        <img src="https://thumbs.dreamstime.com/b/bowl-chinese-noodles-vegetables-white-background-30440348.jpg " style="width:100%"/></a>
+  </div>
+  <div class="column">
+     <a class=" dropdown-item"
+                  asp-area="Foods" asp-controller="Orders" asp-action="create">
+        <img src="https://im1.dineout.co.in/images/uploads/restaurant/sharpen/6/j/w/p6373-15746613325ddb6cd4e6260.jpg?tr=tr:n-xlarge " style="width:100%"/></a>
+  </div>
+  <div class="column">
+     <a class=" dropdown-item"
+                  asp-area="Foods" asp-controller="Orders" asp-action="create">
+        <img src="https://images.chinahighlights.com/allpicture/2021/12/71879439c9ef4d0da835efb6_cut_750x400_39.jpg " style="width:100%"/></a>
+  </div>
+</div>
+<br /><br />
+
+<center><h4>Foods Which Is our Speciality</h4></center>
+<div class="row">
+  <div class="column">
+      <a class=" dropdown-item"
+                  asp-area="Foods" asp-controller="Orders" asp-action="create">
+    <img src="https://thumbs.dreamstime.com/b/veg-thali-indian-cuisine-food-platter-consists-variety-veggies-paneer-dish-lentils-rice-roti-sweet-snacks-etc-selective-225929379.jpg" alt="Snow" style="width:90%"></a>
+  </div>
+  <div class="column">
+      <a class=" dropdown-item"
+                  asp-area="Foods" asp-controller="Orders" asp-action="create">
+    <img src="https://recipes.timesofindia.com/thumb/msid-55045560,width-1600,height-900/55045560.jpg" alt="Forest" style="width:100%"></a>
+  </div>
+  <div class="column">
+      <a class=" dropdown-item"
+                  asp-area="Foods" asp-controller="Orders" asp-action="create">
+    <img src="https://www.aayisrecipes.com/wp-content/uploads/Konkani-veg-thali1.jpg" alt="Mountains" style="width:100%"></a>
+  </div>
+</div>
+</div>
+
+
+</body>
+

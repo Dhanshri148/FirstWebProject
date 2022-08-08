@@ -28,6 +28,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // GET: Demos/Categories
         public async Task<IActionResult> Index()
         {
+            _logger.LogInformation("--------- Retrieved all categories from the database");
             return View(await _context.Category.ToListAsync());
         }
 
@@ -60,15 +61,28 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryName")] Category categoryInputModel)
         {
+
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                categoryInputModel.CategoryName = categoryInputModel.CategoryName.Trim();
+
+                bool isDuplicateFound
+                    = _context.Category.Any(c => c.CategoryName == categoryInputModel.CategoryName);
+
+                if (isDuplicateFound)
+                {
+                    ModelState.AddModelError("CategoryName", "Duplicate! Another category with same name exists");
+                }
+                else
+                {
+                    _context.Add(categoryInputModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            return View(category);
+            return View(categoryInputModel);
         }
 
         // GET: Demos/Categories/Edit/5
@@ -92,34 +106,52 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName")] Category category)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("CategoryId,CategoryName")] Category categoryInputModel)
         {
-            if (id != category.CategoryId)
+            if (id != categoryInputModel.CategoryId)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                try
+                categoryInputModel.CategoryName = categoryInputModel.CategoryName.Trim();
+
+                bool isDuplicateFound
+                    = _context.Category.Any(c => c.CategoryName == categoryInputModel.CategoryName
+                                                    && c.CategoryId != categoryInputModel.CategoryId);
+                if (isDuplicateFound)
                 {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    ModelState.AddModelError("CategoryName", "A duplicate category was found!");
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!CategoryExists(category.CategoryId))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(categoryInputModel);
+
+                        await _context.SaveChangesAsync();
+
+                        return RedirectToAction(nameof(Index));
+
                     }
-                    else
+
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!CategoryExists(categoryInputModel.CategoryId))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(categoryInputModel);
         }
 
         // GET: Demos/Categories/Delete/5

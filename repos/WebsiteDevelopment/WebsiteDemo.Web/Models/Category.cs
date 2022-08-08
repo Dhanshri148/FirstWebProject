@@ -19,7 +19,7 @@ namespace WebsiteDemo.Web.Models
         [Display(Name = "Name of the Category")]
         public string CategoryName { get; set; }
 
-        #region Navigation Properties to the Product Model
+        #region Navigation Properties to the Food Model
         public ICollection<Food> Foods { get; set; }
 
         #endregion
