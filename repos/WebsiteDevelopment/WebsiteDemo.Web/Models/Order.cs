@@ -9,19 +9,19 @@ namespace WebsiteDemo.Web.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OrderId { get; set; }
+        virtual public int OrderId { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string OrderName { get; set; }
+        virtual public string OrderName { get; set; }
 
         [Required]
-        public string OrderStatus { get; set; }
+        virtual public string OrderStatus { get; set; }
 
         #region Navigation Properties to the Food Model
 
         [Required]
-        public int FoodId { get; set; }
+        virtual public int FoodId { get; set; }
 
         [ForeignKey(nameof(Order.FoodId))]
         public Food Food { get; set; }
