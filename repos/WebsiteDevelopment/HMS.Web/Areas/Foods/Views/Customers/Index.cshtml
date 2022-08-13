@@ -5,13 +5,13 @@
 }
 
 <body style="background-color:linen">
-<h1>@ViewData["Title"]</h1>
+<h1 style="font-family:'Curlz MT';color:fuchsia">@ViewData["Title"]</h1>
 
 <p>
     <a asp-action="Create">Create New Customer</a>
 </p>
 <table class="table" style="background-color:coral">
-    <thead>
+    <thead style="background-color:lightpink">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.CustomerName)
@@ -22,6 +22,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Food)
             </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Food)
+            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -37,6 +42,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Food.FoodName)
             </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Food.FoodPrice)
+            </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |

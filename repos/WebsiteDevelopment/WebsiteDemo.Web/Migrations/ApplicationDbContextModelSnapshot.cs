@@ -49,12 +49,7 @@ namespace WebsiteDemo.Web.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
                     b.HasKey("CustomerId");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("Customers");
                 });
@@ -98,7 +93,7 @@ namespace WebsiteDemo.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("FoodId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<string>("OrderName")
@@ -112,18 +107,37 @@ namespace WebsiteDemo.Web.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("FoodId");
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("WebsiteDemo.Web.Models.Customer", b =>
+            modelBuilder.Entity("WebsiteDemo.Web.Models.OrderDetail", b =>
                 {
-                    b.HasOne("WebsiteDemo.Web.Models.Order", "Order")
-                        .WithMany("Customers")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("OrderDetailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FoodId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TableNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailID");
+
+                    b.HasIndex("FoodId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("WebsiteDemo.Web.Models.Food", b =>
@@ -137,9 +151,24 @@ namespace WebsiteDemo.Web.Migrations
 
             modelBuilder.Entity("WebsiteDemo.Web.Models.Order", b =>
                 {
-                    b.HasOne("WebsiteDemo.Web.Models.Food", "Food")
+                    b.HasOne("WebsiteDemo.Web.Models.Customer", "Customer")
                         .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebsiteDemo.Web.Models.OrderDetail", b =>
+                {
+                    b.HasOne("WebsiteDemo.Web.Models.Food", "Food")
+                        .WithMany("OrderDetails")
                         .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebsiteDemo.Web.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

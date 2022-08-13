@@ -5,17 +5,17 @@
     ViewData["Title"] = "Place your Order";
 }
 
-<body style="background-color:mistyrose">
-<h1>@ViewData["Title"]</h1>
+<body >
+<h1 style="font-family:cursive; color:darksalmon">@ViewData["Title"]</h1>
 
-<h4>Food</h4>
+<h4  style="font-family:cursive; color:lightgoldenrodyellow">Food</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row" >
+    <div class="col-md-4"style="background-color:antiquewhite">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FoodName" class="control-label"></label>
+                <label asp-for="FoodName" class="control-label" style="background-color:antiquewhite"></label>
                 <input asp-for="FoodName" class="form-control" />
                 <span asp-validation-for="FoodName" class="text-danger"></span>
             </div>

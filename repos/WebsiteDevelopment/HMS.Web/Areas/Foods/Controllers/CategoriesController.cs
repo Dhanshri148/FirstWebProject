@@ -123,6 +123,8 @@ namespace HMS.Web.Areas.Foods.Controllers
                 bool isDuplicateFound
                     = _context.Categories.Any(c => c.CategoryName == categoryInputModel.CategoryName
                                                     && c.CategoryId != categoryInputModel.CategoryId);
+
+                //isDuplicateFound Block checks for the Duplicate Data
                 if (isDuplicateFound)
                 {
                     ModelState.AddModelError("CategoryName", "A duplicate category was found!");

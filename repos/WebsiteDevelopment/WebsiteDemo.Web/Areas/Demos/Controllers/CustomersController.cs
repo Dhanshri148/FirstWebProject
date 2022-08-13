@@ -23,8 +23,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // GET: Demos/Customers
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Customer.Include(c => c.Order);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Customer.ToListAsync());
         }
 
         // GET: Demos/Customers/Details/5
@@ -36,7 +35,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
             }
 
             var customer = await _context.Customer
-                .Include(c => c.Order)
                 .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
@@ -49,7 +47,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // GET: Demos/Customers/Create
         public IActionResult Create()
         {
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderName");
             return View();
         }
 
@@ -58,7 +55,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,CustomerName,CustomerAddress,OrderId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,CustomerName,CustomerAddress")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +63,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderName", customer.OrderId);
             return View(customer);
         }
 
@@ -83,7 +79,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
             {
                 return NotFound();
             }
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderName", customer.OrderId);
             return View(customer);
         }
 
@@ -92,7 +87,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,CustomerName,CustomerAddress,OrderId")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,CustomerName,CustomerAddress")] Customer customer)
         {
             if (id != customer.CustomerId)
             {
@@ -119,7 +114,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrderId"] = new SelectList(_context.Order, "OrderId", "OrderName", customer.OrderId);
             return View(customer);
         }
 
@@ -132,7 +126,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
             }
 
             var customer = await _context.Customer
-                .Include(c => c.Order)
                 .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {

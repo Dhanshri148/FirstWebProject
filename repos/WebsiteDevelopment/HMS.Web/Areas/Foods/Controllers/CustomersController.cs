@@ -27,6 +27,11 @@ namespace HMS.Web.Areas.Foods.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public IActionResult AddToCart(int? id)
+        {
+            return RedirectToAction("Index");
+        }
+
         // GET: Foods/Customers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -58,7 +63,7 @@ namespace HMS.Web.Areas.Foods.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,CustomerName,CustomerAddress,FoodId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,CustomerName,CustomerAddress,FoodId,FoodPrice")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -67,6 +72,7 @@ namespace HMS.Web.Areas.Foods.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["FoodId"] = new SelectList(_context.Foods, "FoodId", "FoodName", customer.FoodId);
+            
             return View(customer);
         }
 

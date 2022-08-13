@@ -36,11 +36,11 @@ namespace WebsiteDemo.Web.Models
 
         #endregion
 
-        #region Navigation Properties to the Order Model
+        #region Navigation Properties to the Order Details Model
+        public ICollection<OrderDetail> OrderDetails { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        #endregion  
 
-        #endregion
 
     }
 }

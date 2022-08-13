@@ -1,22 +1,28 @@
 ﻿@model IEnumerable<WebsiteDemo.Web.Models.Food>
 
 @{
-    ViewData["Title"] = "Foods List";
+    ViewData["Title"] = "Index";
 }
 
-<h1>@ViewData["Title"] </h1>
+<h1>Index</h1>
 
-<p style="background-color:mistyrose">
+<p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table" style="background-color:darksalmon">
+<table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FoodName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.FoodPrice)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.IsAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Category)
@@ -31,7 +37,13 @@
                 @Html.DisplayFor(modelItem => item.FoodName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.FoodPrice)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)

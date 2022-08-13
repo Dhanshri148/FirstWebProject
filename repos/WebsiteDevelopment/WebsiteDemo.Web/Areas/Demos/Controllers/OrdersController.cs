@@ -23,8 +23,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // GET: Demos/Orders
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Order.Include(o => o.Customers);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Order.ToListAsync());
         }
 
         // GET: Demos/Orders/Details/5
@@ -36,7 +35,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
             }
 
             var order = await _context.Order
-                .Include(o => o.Food)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {
@@ -49,7 +47,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // GET: Demos/Orders/Create
         public IActionResult Create()
         {
-            ViewData["FoodId"] = new SelectList(_context.Foods, "FoodId", "FoodName");
             return View();
         }
 
@@ -58,7 +55,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,OrderName,OrderStatus,FoodId")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderId,OrderName,OrderStatus")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +63,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FoodId"] = new SelectList(_context.Foods, "FoodId", "FoodName", order.FoodId);
             return View(order);
         }
 
@@ -83,7 +79,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
             {
                 return NotFound();
             }
-            ViewData["FoodId"] = new SelectList(_context.Foods, "FoodId", "FoodName", order.FoodId);
             return View(order);
         }
 
@@ -92,7 +87,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,OrderName,OrderStatus,FoodId")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,OrderName,OrderStatus")] Order order)
         {
             if (id != order.OrderId)
             {
@@ -119,7 +114,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FoodId"] = new SelectList(_context.Foods, "FoodId", "FoodName", order.FoodId);
             return View(order);
         }
 
@@ -132,7 +126,6 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
             }
 
             var order = await _context.Order
-                .Include(o => o.Food)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {

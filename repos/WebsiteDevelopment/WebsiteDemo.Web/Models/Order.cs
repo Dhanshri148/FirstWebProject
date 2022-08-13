@@ -8,7 +8,6 @@ namespace WebsiteDemo.Web.Models
     public class Order
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         virtual public int OrderId { get; set; }
 
         [Required]
@@ -18,20 +17,19 @@ namespace WebsiteDemo.Web.Models
         [Required]
         virtual public string OrderStatus { get; set; }
 
-        #region Navigation Properties to the Food Model
-
-        [Required]
-        virtual public int FoodId { get; set; }
-
-        [ForeignKey(nameof(Order.FoodId))]
-        public Food Food { get; set; }
+        #region Navigation Properties to the Order Details Model
+        public ICollection<OrderDetail> OrderDetails { get; set; }
 
         #endregion
 
         #region Navigation Properties to the Customer Model
-        public ICollection<Customer> Customers { get; set; }
 
-        #endregion  
+        public int CustomerId { get; set; }
+
+        [ForeignKey(nameof(Order.CustomerId))]
+        public Customer Customer { get; set; }
+
+        #endregion
 
     }
 }

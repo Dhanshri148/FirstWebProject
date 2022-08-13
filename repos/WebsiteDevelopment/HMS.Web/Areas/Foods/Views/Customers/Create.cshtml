@@ -1,15 +1,16 @@
 ﻿@model HMS.Web.Models.Customer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create New Customer";
 }
 
-<h1>Create</h1>
+<body >
 
-<h4>Customer</h4>
+<h1 style="font-family:cursive; color:darksalmon">@ViewData["Title"]</h1>
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4"style="background-color:antiquewhite">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -17,18 +18,36 @@
                 <input asp-for="CustomerName" class="form-control" />
                 <span asp-validation-for="CustomerName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="CustomerAddress" class="control-label"></label>
                 <input asp-for="CustomerAddress" class="form-control" />
                 <span asp-validation-for="CustomerAddress" class="text-danger"></span>
             </div>
+
+             <div class="form-group">
+                <label asp-for="Food" class="control-label">Food Price</label>
+                <select asp-for="Food" class ="form-control" asp-items="ViewBag.Food"></select>
+            </div>
+
             <div class="form-group">
-                <label asp-for="FoodId" class="control-label"></label>
+                <label asp-for="FoodId" class="control-label">Food Name</label>
                 <select asp-for="FoodId" class ="form-control" asp-items="ViewBag.FoodId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+
+                &nbsp;|&nbsp;
+
+                <a class="" asp-area="Foods" asp-controller="Foods" asp-action="Index">Show Menu</a>
+
+                 &nbsp;|&nbsp;
+
+                <button type="submit" class="btn btn-primary">Get Items</button>
             </div>
+            
+            
+
         </form>
     </div>
 </div>
@@ -36,6 +55,9 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+</body>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

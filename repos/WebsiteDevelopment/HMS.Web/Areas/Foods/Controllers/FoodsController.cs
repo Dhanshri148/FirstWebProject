@@ -35,6 +35,10 @@ namespace HMS.Web.Areas.Foods.Controllers
                                                 .Include(f => f.Category)
                                                 .ToListAsync();
 
+            List<SelectListItem> categories = new List<SelectListItem>();
+            categories.Add(new SelectListItem { Selected = true, Value = "", Text = "---Select a Category---" });
+            categories.AddRange(new SelectList(_context.Categories, "CategoryId", "CategoryName"));
+            //ViewData["CategoryId"] = categories.ToArray();
             return View(viewmodel);
         }
 
@@ -84,12 +88,36 @@ namespace HMS.Web.Areas.Foods.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(food);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                food.FoodName = food.FoodName.Trim();
+
+                bool isDuplicateFound
+                    = _context.Foods.Any(c => c.FoodName == food.FoodName);
+
+                if (isDuplicateFound)
+                {
+                    ModelState.AddModelError("FoodName", "Duplicate! Another category with same name exists");
+                }
+                else
+                {
+                    _context.Add(food);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", food.CategoryId);
-            return View(food);
+            ViewData["FoodId"] = new SelectList(_context.Foods, "FoodId", "FoodName", food.FoodId);
+            FoodViewModel viewModel = new FoodViewModel()
+            {
+                FoodId = food.FoodId,
+                FoodName = food.FoodName,
+                FoodPrice = food.FoodPrice,
+                ImageUrl = food.ImageUrl,
+                IsAvailable = food.IsAvailable,
+
+                CategoryId = food.CategoryId,
+                Category = food.Category
+            };
+
+            return View(viewModel);
         }
 
         // GET: Foods/Foods/Edit/5

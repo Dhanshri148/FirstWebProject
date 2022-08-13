@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace LMS.Web.Models
 {
@@ -30,6 +31,7 @@ namespace LMS.Web.Models
         #region Navigation Properties to the Category Model
         virtual public int CategoryId { get; set; }
 
+        [JsonIgnore]
         [ForeignKey(nameof(Book.CategoryId))]
         public Category Category { get; set; }
 
@@ -37,6 +39,7 @@ namespace LMS.Web.Models
 
         #region Navigation Properties to the Author Model
 
+        [JsonIgnore]
         public ICollection<Author> Authors{get;set;} 
 
         #endregion

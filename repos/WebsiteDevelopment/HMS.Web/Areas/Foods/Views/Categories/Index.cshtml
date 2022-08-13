@@ -1,17 +1,18 @@
 ﻿@model IEnumerable<HMS.Web.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Various Categories of Foods";
 }
 
 <body style="background-color:burlywood">
-<h1>Index</h1>
+
+<h1  style="font-family:cursive; color:darksalmon">@ViewData["Title"] </h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table" style="background-color:chocolate">
-    <thead>
+<table class="table" style="background-color:darksalmon ">
+    <thead style="background-color:chocolate">
         <tr>
              <th>
                 @Html.DisplayNameFor(model => model.CategoryId)

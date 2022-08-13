@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebsiteDemo.Web.Models
@@ -20,14 +21,11 @@ namespace WebsiteDemo.Web.Models
         [Display(Name = "Address of the Customer")]
         public string CustomerAddress { get; set; }
 
-
-        #region Navigation Properties to the Order Model
-
-        public int OrderId { get; set; }
-
-        [ForeignKey(nameof(Customer.OrderId))]
-        public Order Order { get; set; }
+        #region Navigation Properties to the OrderDetails Model
+        public ICollection<Order> Orders { get; set; }
 
         #endregion
+
+
     }
 }

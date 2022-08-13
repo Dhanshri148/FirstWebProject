@@ -4,14 +4,14 @@
     ViewData["Title"] = "Place order";
 }
 
-<body style="background-color:cornsilk">
-<h1>@ViewData["Title"]</h1>
+<body >
+<h1 style="font-family:Cambria; color:lightgreen; text-align:center;border:solid">@ViewData["Title"]</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table" style="background-color:coral">
-    <thead>
+<table class="table" style="background-color:#CD7F32">
+    <thead style="background-color:#E9AB17">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.OrderName)

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using WebsiteDemo.Web.Data;
 using WebsiteDemo.Web.Models;
 
@@ -15,20 +14,15 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger<CategoriesController> _logger;
 
-        public CategoriesController(
-            ApplicationDbContext context,
-            ILogger<CategoriesController> logger)
+        public CategoriesController(ApplicationDbContext context)
         {
             _context = context;
-            _logger = logger;
         }
 
         // GET: Demos/Categories
         public async Task<IActionResult> Index()
         {
-            _logger.LogInformation("--------- Retrieved all categories from the database");
             return View(await _context.Category.ToListAsync());
         }
 
@@ -61,28 +55,15 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryName")] Category categoryInputModel)
+        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName")] Category category)
         {
-
             if (ModelState.IsValid)
             {
-                categoryInputModel.CategoryName = categoryInputModel.CategoryName.Trim();
-
-                bool isDuplicateFound
-                    = _context.Category.Any(c => c.CategoryName == categoryInputModel.CategoryName);
-
-                if (isDuplicateFound)
-                {
-                    ModelState.AddModelError("CategoryName", "Duplicate! Another category with same name exists");
-                }
-                else
-                {
-                    _context.Add(categoryInputModel);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
+                _context.Add(category);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            return View(categoryInputModel);
+            return View(category);
         }
 
         // GET: Demos/Categories/Edit/5
@@ -106,52 +87,34 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(
-            int id,
-            [Bind("CategoryId,CategoryName")] Category categoryInputModel)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName")] Category category)
         {
-            if (id != categoryInputModel.CategoryId)
+            if (id != category.CategoryId)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                categoryInputModel.CategoryName = categoryInputModel.CategoryName.Trim();
-
-                bool isDuplicateFound
-                    = _context.Category.Any(c => c.CategoryName == categoryInputModel.CategoryName
-                                                    && c.CategoryId != categoryInputModel.CategoryId);
-                if (isDuplicateFound)
+                try
                 {
-                    ModelState.AddModelError("CategoryName", "A duplicate category was found!");
+                    _context.Update(category);
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    try
+                    if (!CategoryExists(category.CategoryId))
                     {
-                        _context.Update(categoryInputModel);
-
-                        await _context.SaveChangesAsync();
-
-                        return RedirectToAction(nameof(Index));
-
+                        return NotFound();
                     }
-
-                    catch (DbUpdateConcurrencyException)
+                    else
                     {
-                        if (!CategoryExists(categoryInputModel.CategoryId))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
+                        throw;
                     }
                 }
+                return RedirectToAction(nameof(Index));
             }
-            return View(categoryInputModel);
+            return View(category);
         }
 
         // GET: Demos/Categories/Delete/5

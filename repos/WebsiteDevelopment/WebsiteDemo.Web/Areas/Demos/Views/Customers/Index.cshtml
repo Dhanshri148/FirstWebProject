@@ -18,9 +18,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.CustomerAddress)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Order)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -32,9 +29,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Order.OrderName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |

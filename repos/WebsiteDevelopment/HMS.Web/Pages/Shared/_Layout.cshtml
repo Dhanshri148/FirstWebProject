@@ -8,14 +8,20 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">HMS.Web</a>
+    <header >
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" 
+                            style=" background-image:linear-gradient(to right,#de6262, #ffb88c)">
+            <div class="container" style=" background-image:linear-gradient(to right,#de6262, #ffb88c)">
+
+                <a class="navbar-brand" style="color:white!important"
+                                     asp-area="" asp-page="/Index">HMS.Web</a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
+
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -53,7 +59,7 @@
                                         asp-area="Foods" asp-controller="Customers" asp-action="Index">Customers</a>
                             </div>
                         </li>
-
+                        
                     </ul>
                 </div>
             </div>
@@ -68,6 +74,9 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - HMS.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+
+            &nbsp;|&nbsp;
+            <a href="/swagger">Open API Documentation</a>
         </div>
     </footer>
 

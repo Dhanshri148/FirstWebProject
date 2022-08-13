@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using WebsiteDemo.Web.Areas.Demos.ViewModels;
 using WebsiteDemo.Web.Data;
 using WebsiteDemo.Web.Models;
 
@@ -16,26 +14,17 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
     public class FoodsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public readonly ILogger<FoodsController> _logger;
 
-        public FoodsController(
-            ApplicationDbContext context,
-            ILogger<FoodsController> logger)
+        public FoodsController(ApplicationDbContext context)
         {
             _context = context;
-            _logger = logger;
         }
 
         // GET: Demos/Foods
         public async Task<IActionResult> Index()
         {
-            _logger.LogInformation("--------------Retrieve details of the Foods along with the Associated Category from  the database");
-
-            var viewmodel = await _context.Foods
-                                                .Include(f => f.Category)
-                                                .ToListAsync();
-
-            return View(viewmodel);
+            var applicationDbContext = _context.Foods.Include(f => f.Category);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Demos/Foods/Details/5
@@ -48,27 +37,13 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
 
             var food = await _context.Foods
                 .Include(f => f.Category)
-                .Include(f => f.Orders)
                 .FirstOrDefaultAsync(m => m.FoodId == id);
             if (food == null)
             {
                 return NotFound();
             }
 
-            FoodViewModel viewModel = new FoodViewModel()
-            {
-                FoodId = food.FoodId,
-                FoodName = food.FoodName,
-                FoodPrice = food.FoodPrice,
-                IsAvailable = food.IsAvailable,
-
-                CategoryId = food.CategoryId,
-                Category = food.Category,
-
-                Orders = food.Orders
-            };
-
-            return View(viewModel);
+            return View(food);
         }
 
         // GET: Demos/Foods/Create
@@ -83,7 +58,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FoodId,FoodName,IsAvailable,CategoryId,ImageUrl,FoodPrice")] Food food)
+        public async Task<IActionResult> Create([Bind("FoodId,FoodName,FoodPrice,IsAvailable,ImageUrl,CategoryId")] Food food)
         {
             if (ModelState.IsValid)
             {
@@ -109,18 +84,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName", food.CategoryId);
-
-            var foodViewModel = new FoodViewModel()
-            {
-                FoodId = food.FoodId,
-                FoodName = food.FoodName,
-                FoodPrice = food.FoodPrice,
-                IsAvailable = food.IsAvailable,
-                CategoryId = food.CategoryId,
-                Category = food.Category
-            };
-
-            return View(foodViewModel);
+            return View(food);
         }
 
         // POST: Demos/Foods/Edit/5
@@ -128,7 +92,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FoodId,FoodName,IsAvailable,CategoryId,ImageUrl,FoodPrice")] Food food)
+        public async Task<IActionResult> Edit(int id, [Bind("FoodId,FoodName,FoodPrice,IsAvailable,ImageUrl,CategoryId")] Food food)
         {
             if (id != food.FoodId)
             {
@@ -175,17 +139,7 @@ namespace WebsiteDemo.Web.Areas.Demos.Controllers
                 return NotFound();
             }
 
-            var foodViewModel = new FoodViewModel()
-            {
-                FoodId = food.FoodId,
-                FoodName = food.FoodName,
-                FoodPrice = food.FoodPrice,
-                IsAvailable = food.IsAvailable,
-                CategoryId = food.CategoryId,
-                Category = food.Category
-            };
-
-            return View(foodViewModel);
+            return View(food);
         }
 
         // POST: Demos/Foods/Delete/5

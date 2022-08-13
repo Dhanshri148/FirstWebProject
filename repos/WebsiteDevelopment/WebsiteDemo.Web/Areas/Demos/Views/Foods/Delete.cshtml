@@ -1,5 +1,4 @@
-﻿@* @model WebsiteDemo.Web.Models.Food*@
-@model WebsiteDemo.Web.Areas.Demos.ViewModels.FoodViewModel
+﻿@model WebsiteDemo.Web.Models.Food
 
 @{
     ViewData["Title"] = "Delete";
@@ -18,13 +17,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FoodName)
         </dd>
-         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-         <dt class = "col-sm-2">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FoodPrice)
         </dt>
         <dd class = "col-sm-10">
@@ -35,6 +28,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IsAvailable)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImageUrl)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
