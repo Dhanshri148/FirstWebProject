@@ -7,13 +7,6 @@
 <body style="background-color:lightcyan">
 <h1 style="font-family:'Curlz MT';color:orangered">@ViewData["Title"]</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-
-    &nbsp;|&nbsp;
-    <a class="" asp-area="Foods" asp-controller="Orders" asp-action="Create">Go For Order</a>
-
-</p>
 <table class="table" style="background-color:#56A5EC">
     <thead style="background-color:#B7CEEC">
         <tr>
@@ -49,11 +42,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.FoodId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FoodId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FoodId">Delete</a>
-            </td>
+            
         </tr>
 }
     </tbody>

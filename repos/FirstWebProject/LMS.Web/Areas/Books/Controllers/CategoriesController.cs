@@ -25,6 +25,11 @@ namespace LMS.Web.Areas.Books.Controllers
             _logger = logger;
         }
 
+        public object GetCategories()
+        {
+            throw new NotImplementedException();
+        }
+
         // GET: Books/Categories
         public async Task<IActionResult> Index()
         {

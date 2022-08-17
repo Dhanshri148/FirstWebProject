@@ -15,7 +15,7 @@ namespace HomePage.xUnitTestProject
         public void Test1()
         {
             //ARRANGE
-            int expectedResult = 4;
+            int expectedResult = 5;
             int actualResult = 5;
             int a = 50, b = 10;
 
