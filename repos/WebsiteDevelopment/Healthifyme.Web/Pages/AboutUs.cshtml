@@ -1,0 +1,133 @@
+﻿@page
+@model Healthifyme.Web.Pages.AboutUsModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="about-section">
+  <h1>About Us </h1>
+  <p>This website provide services such as advice on nutrition and fitness and provide diet and exercises.</p>
+  <p>We help in making better health,we provide elite coaches also personalized fitness plans and better health insights</p>
+</div>
+
+<h2 style="text-align:center">Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="../Images/CEO.jpg" alt="Img" style="width:100%">
+      <div class="container">
+        <h2>Tushar Vashisht</h2>
+        <p class="title">CEO & Founder</p>
+                    <p>Tushar Vashisht is an Indian entrepreneur. He is the co-founder and CEO of consumer health app HealthifyMe. 
+                        He is a former investment banker, was an early employee at Aadhaar and is a University of Pennsylvania graduate.</p>
+        <p>Tushar@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="../Images/Vice President.jpg" alt="Mike" style="width:100%">
+      <div class="container">
+                    <h2>Roshini Gilbert</h2>
+                    <p class="title">
+                        Vice President - Services & Experience 
+                    </p>
+                    <p>Having lost 30 kgs of post-natal weight, Roshini jumped from a career as a CA to being the Director of Fitness at HealthifyMe. 
+                        She has enabled several HealthifyMe users in making life-changing body transformations..</p>
+        <p>Roshni@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <img src="../Images/Director.jpg" alt="John" style="width:100%">
+      <div class="container">
+                    <h2> Rohan Gupta </h2>
+                    <p class="title">
+                        Director - Design
+                    </p>
+                    <p>Rohan joined HealthifyMe in 2013 after graduating from Srishti School of Art, Design and Technology.
+                        In 2015, Rohan moved over to Product Management, and is now responsible for looking after the user facing product.</p>
+        <p>Rohan@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

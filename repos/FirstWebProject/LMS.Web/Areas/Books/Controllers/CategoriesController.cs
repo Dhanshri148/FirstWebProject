@@ -136,7 +136,7 @@ namespace LMS.Web.Areas.Books.Controllers
                 else
                 {
                     try
-                    {
+                    {          
                         _context.Update(categoryInputModel);
 
                         await _context.SaveChangesAsync();

@@ -1,0 +1,146 @@
+﻿@using Healthifyme.Web.Models
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> userManager
+
+@{
+    IdentityUser userObj = null;
+    if (this.User != null)
+    {
+        userObj = await userManager.GetUserAsync(this.User);
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Healthifyme.Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    @RenderSection("HeadScripts",required:false)
+</head>
+<body >
+    <header >
+      
+
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Healthify</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a class="nav-item nav-link active" asp-area="" asp-page="/Index">Home</a>
+                        <a asp-area=""asp-page="/AboutUs1" class="nav-item nav-link">About</a>
+                        
+                        <a asp-area="" asp-page="/Price" class="nav-item nav-link">Price</a>
+
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Categories</a>
+                            <div class="dropdown-menu">
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="DietCategories" asp-action="Index">DietCategories</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="ExerciseCategories" asp-action="Index">ExerciseCategories</a>
+                            </div>
+                        </div>
+                        
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Manage</a>
+                            <div class="dropdown-menu">
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="Categories" asp-action="Index">Categories</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="Dietitions" asp-action="Index">Dietitions</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="Exercises" asp-action="Index">Exercises</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="DietCharts" asp-action="Index">DietCharts</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Users" asp-controller="Customers" asp-action="Index">Our Customers</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Users" asp-controller="Payments" asp-action="Index">Payments</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Users</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item"
+                                   asp-area="DietitionDetails" asp-controller="Home" asp-action="Index">Dietition</a>
+                                <a class="dropdown-item"
+                                    asp-area="DietitionDetails" asp-controller="Home" asp-action="Index2">Exercises</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Users" asp-controller="Customers" asp-action="Index1"> Customers</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Users" asp-controller="Payments" asp-action="Index1">Payments</a>
+                            </div>
+
+                        </div>
+                      @*  @if (userObj != null)
+                        {
+                            if (await userManager.IsInRoleAsync(userObj, MyIdentityRoleNames.AppAdmin.ToString()))
+                            {
+                                <div class="nav-item nav-link">
+                                    <a class="nav-link" asp-area="Identity" asp-page="/Account/RegisterDietition">RegisterDietition</a>
+                                </div>
+                            }
+                        }*@
+                        <a asp-area="" asp-page="/ContactUs" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <div>
+                        @*Inserting the Login Partial View*@
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+            
+
+     
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Healthifyme.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+
+            &nbsp;|&nbsp;
+            <a href="/swagger">Open API Documentation</a>
+            
+        </div>
+        
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

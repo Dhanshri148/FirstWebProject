@@ -14,6 +14,7 @@ using LMS.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Identity;
 
 
 //NOTE: add the NuGet Package "SwashBuckle.AspNetCore"
@@ -56,6 +57,13 @@ namespace LMS.Web
                     Description = "Library Management System - API version 1"
                 });
             });
+
+            // Register the OWIN Identity Middleware
+            // to use the default IdentityUser and IdentityRole profiles
+            // and store the data in the ApplicationDbContext
+            services
+                .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,6 +94,8 @@ namespace LMS.Web
 
             app.UseRouting();
 
+            //Activate the OWIN middleware to use Authentication and Authorization
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

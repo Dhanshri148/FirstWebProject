@@ -1,0 +1,65 @@
+﻿@model Healthifyme.Web.Models.Dietition
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Dietition</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DietitionName" class="control-label"></label>
+                <input asp-for="DietitionName" class="form-control" />
+                <span asp-validation-for="DietitionName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DietitionExperience" class="control-label"></label>
+                <input asp-for="DietitionExperience" class="form-control" />
+                <span asp-validation-for="DietitionExperience" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContactNumber" class="control-label"></label>
+                <input asp-for="ContactNumber" class="form-control" />
+                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fees" class="control-label"></label>
+                <input asp-for="Fees" class="form-control" />
+                <span asp-validation-for="Fees" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseId" class="control-label"></label>
+                <select asp-for="ExerciseId" class ="form-control" asp-items="ViewBag.ExerciseId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DietChartId" class="control-label"></label>
+                <select asp-for="DietChartId" class ="form-control" asp-items="ViewBag.DietChartId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HMS.Web.Data;
 using HMS.Web.Models;
+using Microsoft.Extensions.Logging;
 
 namespace HMS.Web.Controllers
 {
@@ -15,31 +16,77 @@ namespace HMS.Web.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<CategoriesController> _logger;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(
+                            ApplicationDbContext context,
+                            ILogger<CategoriesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Categories
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        //public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        //{
+        //    return await _context.Categories.ToListAsync();
+        //}
+
+        public async Task<IActionResult> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+
+            try
+            {
+                var categories = await _context.Categories.ToListAsync();
+
+                if (categories == null)
+                {
+                    _logger.LogWarning("No Categories were found in the database");
+                    return NotFound();
+                }
+                _logger.LogInformation("Extracted all the Categories from database");
+                return Ok(categories);
+            }
+            catch
+            {
+                _logger.LogError("There was an attempt to retrieve information from the database");
+                return BadRequest();
+            }
         }
 
         // GET: api/Categories/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public async Task<ActionResult> GetCategory(int? id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            //var category = await _context.Categories.FindAsync(id);
 
-            if (category == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            return category;
+            //return category;
+            try
+            {
+
+                var category = await _context.Categories.FindAsync(id);
+
+
+                //var category = await _context.Categories
+                //                                    .Include(c => c.Books)
+                //                                    .SingleOrDefaultAsync(c => c.CategoryId == id);
+
+                if (category == null)
+                {
+                    return NotFound();
+                }
+                return Ok(category);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         // PUT: api/Categories/5

@@ -1,0 +1,72 @@
+﻿@using Healthifyme.Web.Areas.DietitionDetails.ViewModels
+@model ShowDietitionViewModel
+
+@{
+}
+
+<h1>The Dietition</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                     <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+               
+            </div>
+
+            <button type="submit" class="btn btn-primary">Get dietitions</button>
+        </form>
+    </div>
+</div>
+
+
+@if (Model != null && Model.Dietitions != null)
+{
+    <form method="post">
+        <input type="hidden" asp-for="CategoryId" />
+
+        <div class="card-columns mt-3">
+            @foreach (var item in Model.Dietitions)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"> @item.DietitionName </h4>
+                        <p class="card-text"> @item.DietitionExperience </p>
+                        <p class="card-img">@item.ContactNumber</p>
+                    </div>
+                    <div class="card-footer">
+                        <select asp-for="Fee">
+                            <option value="1">3999</option>
+                            <option value="2">7999</option>
+                            <option value="3">9999</option>
+                        </select>
+
+                        <button class="btn btn-sm btn-primary" type="submit"
+                        asp-area="Users" asp-controller="Customers"
+                        asp-action="Create" asp-route-id="@item.CategoryId">
+                            Assign Dietition
+                        </button>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </form>
+}
+
+
+
+@section HeadScripts {
+    <style>
+        h1 {
+            color: darkgreen;
+            text-align: center;
+            font-family: 'Brush Script MT', Arial;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    </style>
+}

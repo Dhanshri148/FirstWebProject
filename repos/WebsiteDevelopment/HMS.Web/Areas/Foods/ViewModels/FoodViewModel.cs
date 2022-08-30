@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using HMS.Web.Models;
 
 namespace HMS.Web.Areas.Foods.ViewModels
@@ -54,5 +55,9 @@ namespace HMS.Web.Areas.Foods.ViewModels
                 get => base.FoodPrice;      
                 set => base.FoodPrice = value;
         }
+
+        public ICollection<Order> Orders { get; set; }
+
+        public ICollection<Customer> Customer { get; set; }
     }
 }

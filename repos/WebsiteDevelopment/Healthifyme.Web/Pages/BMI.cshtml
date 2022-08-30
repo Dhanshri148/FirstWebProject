@@ -1,0 +1,75 @@
+﻿@page
+@model Healthifyme.Web.Pages.BMIModel
+@{
+}
+
+<!DOCTYPE html>
+<script runat="server">
+
+        public string bmiStyle = "alert alert-primary";
+        protected void Page_Load(object sender, System.EventArgs e) {
+        if (!this.IsPostBack) {
+        }
+    }
+
+        protected void Button1_Click(object sender, System.EventArgs e) {
+
+            double index = 0;
+        if (height.Text != "" && weight.Text != "") {
+                double h = Convert.ToInt32(height.Text);
+                double w = Convert.ToInt32(weight.Text);
+            index = Math.Round(w / (h * h) * 703, 2);
+        }
+
+        if (index < 18.5) {
+            result.Text = "underweight - BMI : " + index;
+            bmiStyle = "alert alert-secondary";
+        } else if (index < 25) {
+            result.Text = "normal - BMI : " + index;
+            bmiStyle = "alert alert-success";
+        } else if (index < 30) {
+            result.Text = "overweight - BMI : " + index;
+            bmiStyle = "alert alert-warning";
+        } else {
+            result.Text = "obese - BMI : " + index;
+            bmiStyle = "alert alert-danger";
+        }
+    }
+
+</script>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> CODE4EXAMPLE </title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>ASP.NET BODY MASS INDEX (BMI)</h1>
+        <form id="form1" runat="server">
+            <div class="form-group">
+                <label for="height">Please Enter your Height in Inches :</label>
+                <asp:TextBox ID="height" class="form-control" placeholder="69" runat="server" />
+            </div>
+            <div class="form-group">
+                <label for="weight">Please Enter your weight in Pounds :</label>
+                <asp:TextBox ID="weight" class="form-control" placeholder="150" runat="server" />
+            </div>
+            <div class="form-group">
+                <asp:Button ID="Button1"
+                            runat="server"
+                            class="btn btn-success"
+                            OnClick="Button1_Click"
+                            Text="Calculate BMI" />
+            </div>
+
+        </form>
+        <div class="<%=bmiStyle%>" role="alert" id="bmi">
+            <asp:Label ID="result" Text="Body Mass Index" runat="server" />
+        </div>
+    </div>
+</body>
+</html>

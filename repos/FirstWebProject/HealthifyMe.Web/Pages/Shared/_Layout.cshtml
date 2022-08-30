@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HealthifyMe.Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+    <script src="js/jquery-1.6.3.min.js" type="text/javascript"></script>
+    <script src="js/tabs.js" type="text/javascript"></script>
+
+    @RenderSection("HeadScripts",required:false)
+</head>
+<body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">HealthifyMe.Web</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Manage</a>
+                            <div class="dropdown-menu">
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="Categories" asp-action="Index">Categories</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="Dietitions" asp-action="Index">Dietitions</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="Exercises" asp-action="Index">Exercises</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="DietCharts" asp-action="Index">DietCharts</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">User</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item"
+                                            asp-area="DietitionDetails" asp-controller="Home" asp-action="Index">The Dietition</a>
+                                <a class="dropdown-item"
+                                   asp-area="DietitionDetails" asp-controller="DietAndExercise" asp-action="Index">The Exercises</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Users" asp-controller="Customers" asp-action="Index">Users</a>
+                            </div>
+                        </li>
+
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        @*<nav style="z-index:1000; position:relative">
+                    <ul class="menu wrapper">
+                        <li> <a class="nav-link text-dark; active" asp-area="" asp-page="/Index">Home</a>
+                         </li>
+                        <li class ="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Manage</a>
+                            <div class="dropdown-menu">
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="Categories" asp-action="Index">Categories</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="Dietitions" asp-action="Index">Dietitions</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="Exercises" asp-action="Index">Exercises</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Dietitions" asp-controller="DietCharts" asp-action="Index">DietCharts</a>
+                            </div>
+                            </li>
+                        <li class ="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">User</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item"
+                                   asp-area="DietitionDetails" asp-controller="Home" asp-action="Index">The Dietition</a>
+                                <a class="dropdown-item"
+                                   asp-area="DietitionDetails" asp-controller="DietAndExercise" asp-action="Index">The Exercises</a>
+                                <a class=" dropdown-item"
+                                   asp-area="Users" asp-controller="Customers" asp-action="Index">Users</a>
+                            </div>
+                        </li>
+
+                        <li><a href="programs.html">Users</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                    </ul>
+                </nav>*@
+        
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - HealthifyMe.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+
+            &nbsp;|&nbsp;
+            <a href="/swagger">Open API Documentation</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+     @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomePage.Web", "HomePage.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Web", "Restaurant.Web\Restaurant.Web.csproj", "{60478A1C-600A-489D-815C-3F2DB838559E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMS.xUnitTestProject", "LMS.xUnitTestProject\LMS.xUnitTestProject.csproj", "{B48B89B9-6AAD-4168-8AA3-4F847564C287}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LMS.xUnitTestProject", "LMS.xUnitTestProject\LMS.xUnitTestProject.csproj", "{B48B89B9-6AAD-4168-8AA3-4F847564C287}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomePage.xUnitTestProject", "HomePage.xUnitTestProject\HomePage.xUnitTestProject.csproj", "{A763AF86-048B-4ED2-A035-20CE008D0AC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomePage.xUnitTestProject", "HomePage.xUnitTestProject\HomePage.xUnitTestProject.csproj", "{A763AF86-048B-4ED2-A035-20CE008D0AC2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthifyMe.Web", "HealthifyMe.Web\HealthifyMe.Web.csproj", "{C585588F-D2AA-4054-BCEC-CBE59C5597BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAngularDemo", "MyAngularDemo\MyAngularDemo.csproj", "{DE99F5B1-5CEB-47B0-90EF-EFCF6D01CB65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{A763AF86-048B-4ED2-A035-20CE008D0AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A763AF86-048B-4ED2-A035-20CE008D0AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A763AF86-048B-4ED2-A035-20CE008D0AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C585588F-D2AA-4054-BCEC-CBE59C5597BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C585588F-D2AA-4054-BCEC-CBE59C5597BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C585588F-D2AA-4054-BCEC-CBE59C5597BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C585588F-D2AA-4054-BCEC-CBE59C5597BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE99F5B1-5CEB-47B0-90EF-EFCF6D01CB65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE99F5B1-5CEB-47B0-90EF-EFCF6D01CB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE99F5B1-5CEB-47B0-90EF-EFCF6D01CB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE99F5B1-5CEB-47B0-90EF-EFCF6D01CB65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

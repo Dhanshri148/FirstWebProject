@@ -1,4 +1,5 @@
 ﻿using HomePage.Web.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HomePage.Web.Areas.Products.ViewModels

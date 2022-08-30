@@ -1,0 +1,74 @@
+﻿@model Healthifyme.Web.Models.Exercise
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Exercise</h4>
+    <hr />
+    @*<dl class="row">
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.ExerciseName)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.ExerciseName)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.ExerciseCategory)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.ExerciseCategory.ExerciseCategoryId)
+    </dd>
+    <dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.ExerciseDescription)
+    </dt>
+    <dd class="col-sm-10">
+    @Html.DisplayFor(model => model.ExerciseDescription)
+    </dd>
+    <dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.ImageUrl)
+    </dt>
+    <dd class="col-sm-10">
+    @Html.DisplayFor(model => model.ImageUrl)
+    </dd>
+    </dl>
+    </div>
+    <div>
+    <a asp-action="Edit" asp-route-id="@Model.ExerciseId">Edit</a> |
+    <a asp-action="Index">Back to List</a>*@
+
+    <div class="card" style="width:400px">
+        <div class="card-title text-center">
+            <h2>@Html.DisplayFor(model => model.ExerciseName)</h2>
+        </div>
+        <img class="card-img-top" src="@Model.ImageUrl" alt="@Model.ExerciseName"
+             style="max-height: 300px;">
+        <div class="card-body">
+            <h4 class="card-title">@Model.ExerciseName</h4>
+            <div class="row">
+                <div class="col card-text">
+                    @Html.DisplayNameFor(model => model.ExerciseName)
+                </div>
+                <div class="col card-text">
+                    @Html.DisplayFor(model => model.ExerciseName)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col card-text">
+                    @Html.DisplayNameFor(model => model.ExerciseDescription)
+                </div>
+                <div class="col card-text">
+                    @Html.DisplayFor(model => model.ExerciseDescription)
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="Edit" asp-route-id="@Model.ExerciseDescription" class="btn btn-primary">Edit</a>
+            &nbsp;|&nbsp;
+            <a asp-action="Details">Back to List</a>
+        </div>
+    </div>
+</div>

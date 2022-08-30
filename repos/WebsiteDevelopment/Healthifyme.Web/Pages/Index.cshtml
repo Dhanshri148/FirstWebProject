@@ -1,0 +1,610 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+@*
+<div class="text-center" >
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+</div>*@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>HealthifyMe</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+        <link href="~/lib/flaticon/font/flaticon.css" rel="stylesheet"> 
+        <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/StyleSheet.css" rel="stylesheet">
+    </head>
+
+    <body>
+   
+     
+    <!-- Top Bar Start -->
+    
+    <div class="top-bar d-none d-md-block">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="top-bar-left">
+                        <div class="text">
+                            <i class="far fa-clock"></i>
+                            <h2>8:00 - 9:00</h2>
+                            <p>Mon - Fri</p>
+                        </div>
+                        <div class="text">
+                            <i class="fa fa-phone-alt"></i>
+                            <h2>1800 419 9501</h2>
+                            <p>For Appointment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="top-bar-right">
+                        <div class="social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Hero Start -->
+        <div class="hero">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="hero-text">
+                            <h1>For Good Health</h1>
+                            <p>
+                                HealthifyMe provides smart meal plans personalized by our expert nutritionists and customized workout plans with our certified fitness coaches.
+                            </p>
+                            <div class="hero-btn">
+                                <a class="btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                <a class="btn" href="">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 d-none d-md-block">
+                        <div class="hero-image">
+                            <img src="/Images/sara1.jpg" alt="Hero Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+
+        <!-- About Start -->
+        <div class="about wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="about-img">
+                            <img src="../Images/Diet.jpg" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-6">
+                        <div class="section-header text-left">
+                            <p>About Us</p>
+                            <h2>Welcome to HealthifyMe</h2>
+                        </div>
+                        <div class="about-text">
+                            <p>
+                                Healthy eating is a way of life, so it’s important to establish routines that are simple, realistically, and ultimately livable.
+                            </p>
+                            <p>
+                                Eat breakfast like a king, lunch like a prince, and dinner like a pauper.
+                            </p>
+                        <a class="btn" href="https://www.hsph.harvard.edu/nutritionsource/2013/11/06/healthy-eating-ten-nutrition-tips-for-eating-right/" target="_blank">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+
+        <!-- Service Start -->
+        <div class="service">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>What we do</p>
+                    <h2>Proper Exercise and Diet For Health</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="flaticon-workout"></i>
+                            </div>
+                            <h3>Heal emotions</h3>
+                            <p>
+                            Yoga relieves pain and eases traumatic memories. 
+                            It helps cope with pain by disassociating with the actual pain, focusing on positive thoughts and experiences.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-item active">
+                            <div class="service-icon">
+                                <i class="flaticon-workout-1"></i>
+                            </div>
+                            <h3>Body Refreshes</h3>
+                            <p>
+                                This can help keep you calm, clear your mind of worries, and de-stress. Yoga can be done in your home or outdoors. 
+                                There are even seated poses that can be done anywhere 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="flaticon-workout-2"></i>
+                            </div>
+                            <h3>Mind & Serenity</h3>
+                            <p>
+                                Peace is the result of retaining your mind to process life as it is,rather than as you think it should be.
+                                It is in us that prevents our living in the most full and whole way.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="flaticon-workout-3"></i>
+                            </div>
+                            <h3>Enjoy Your life</h3>
+                            <p>
+                                Yoga is a great practice for both the body and the mind, it offers peace and mindfulness to its lovers and helps them get through daily stress. 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="flaticon-workout-4"></i>
+                            </div>
+                            <h3>Body & Spirituality</h3>
+                            <p>
+                                When ypu listen to yourself everthing comes naturally.It comes from inside like a kind of will to do something try to be sensitive.That's Yoga.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="1s">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="flaticon-yoga-pose"></i>
+                            </div>
+                            <h3>Body & Mind</h3>
+                            <p>
+                             Iyengar flow is generally a much slower practice. Iyengar focuses on the body's imbalances and promotes physical alignment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+        
+        
+        <!-- Price Start -->
+        <div class="price">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>HealthifyMe Package</p>
+                    <h2>Healthify Pricing Plan</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="price-item">
+                            <div class="price-header">
+                                <div class="price-title">
+                                    <h2>Basic</h2>
+                                </div>
+                                <div class="price-prices">
+                                <h2><small>Rs<span>--</span></small>3999</h2>
+                                </div>
+                            </div>
+                            <div class="price-body">
+                                <div class="price-description">
+                                    <ul>
+                                        <li>Personal Trainer</li>
+                                        <li>Special Class</li>
+                                        <li>Free Tutorials</li>
+                                        <li>Group Training</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="price-footer">
+                                <div class="price-action">
+                                <a class="btn" id="register" asp-area="Identity" asp-page="/Account/Register">Join Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="price-item featured-item">
+                            <div class="price-header">
+                                <div class="price-status">
+                                    <span>Popular</span>
+                                </div>
+                                <div class="price-title">
+                                    <h2>Standard</h2>
+                                </div>
+                                <div class="price-prices">
+                                    <h2><small>Rs<span>--</span></small>7999</h2>
+                                </div>
+                            </div>
+                            <div class="price-body">
+                                <div class="price-description">
+                                    <ul>
+                                        <li>Personal Trainer</li>
+                                        <li>Special Class</li>
+                                        <li>Free Tutorials</li>
+                                        <li>Group Training</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="price-footer">
+                                <div class="price-action">
+                                <a class="btn" id="register" asp-area="Identity" asp-page="/Account/Register">Join Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="price-item">
+                            <div class="price-header">
+                                <div class="price-title">
+                                    <h2>Premium</h2>
+                                </div>
+                                <div class="price-prices">
+                                    <h2><small>Rs</small><span>--</span>9999<span></span></h2>
+                                </div>
+                            </div>
+                            <div class="price-body">
+                                <div class="price-description">
+                                    <ul>
+                                        <li>Personal Trainer</li>
+                                        <li>Special Class</li>
+                                        <li>Free Tutorials</li>
+                                        <li>Group Training</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="price-footer">
+                                <div class="price-action">
+                                <a class="btn" id="register" asp-area="Identity" asp-page="/Account/Register">Join Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Price End -->
+        
+        
+        <!-- Testimonial Start -->
+        <div class="testimonial wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Testimonial</p>
+                    <h2>Our Client Say!</h2>
+                </div>
+                <div class="owl-carousel testimonials-carousel">
+                    <div class="testimonial-item">
+                        <div class="testimonial-img">
+                            <img src="img/testimonial-1.jpg" alt="Image">
+                        </div>
+                        <div class="testimonial-text">
+                            <p>
+                            Stay Focused to your goal. 
+                            Guidance by HealthifyMe Premium Diet, Fitness coach and app information regarding your food will help you to achieve your goal to fitness..
+                            </p>
+                            <h3>Aayushi</h3>
+                            <h4>Student</h4>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-img">
+                            <img src="img/testimonial-2.jpg" alt="Image">
+                        </div>
+                        <div class="testimonial-text">
+                            <p>
+                            Got this app just in time when I decided to shred weight and bring down by bmi levels to normal.
+                            </p>
+                            <h3>Rahul Sharma</h3>
+                            <h4>Businessman</h4>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-img">
+                            <img src="img/testimonial-3.jpg" alt="Image">
+                        </div>
+                        <div class="testimonial-text">
+                            <p>
+                            HealthifyMe is known for transforming the lives of millions of Indians through its diet and workout plans and partnering with them is so fulfilling
+                            </p>
+                            <h3>Maansi</h3>
+                            <h4>Teacher</h4>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-img">
+                            <img src="~/Images/sara2.jpg" alt="Image">
+                        </div>
+                        <div class="testimonial-text">
+                            <p>
+                                I Healthified from 96 Kg to 56 Kg to fight PCOS.
+                            </p>
+                            <h3>Sara Ali Khan</h3>
+                            <h4>Actor</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+
+        <!-- Team Start -->
+        <div class="team">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>Trainer</p>
+                    <h2>Expert Healthify Trainer</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="~/img/trainer1.jpg" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Shraddha</h2>
+                                <p>Dietition</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="~/Images/trainer2.jpg" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Dileep</h2>
+                                <p>Fitness Coach</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="~/Images/trainer3.jpg" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Zainab</h2>
+                                <p>Diet Expert</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="~/Images//trainer4.jpg" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Kanika Arora</h2>
+                                <p>Yoga Teacher</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Team End -->
+
+
+        <!-- Blog Start -->
+        <div class="blog">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>From Blog</p>
+                    <h2>Latest Healthify Articles</h2>
+                </div>
+                <div class="owl-carousel blog-carousel wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="~/Images/article1.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Weight Loss</h2>
+                            <div class="blog-meta">
+                                <p><i class="far fa-list-alt"></i>Weight Loss</p>
+                                <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
+                                <p><i class="far fa-comments"></i>5</p>
+                            </div>
+                            <p>
+                            Stay Focused to your goal. Guidance by HealthifyMe Premium Diet, 
+                            Fitness coach and app information regarding your food will help you to achieve your goal to fitness..
+                            </p>
+                            <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="~/Images/article7.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Healthy Lunch</h2>
+                            <div class="blog-meta">
+                                <p><i class="far fa-list-alt"></i>Health Fitness</p>
+                                <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
+                                <p><i class="far fa-comments"></i>5</p>
+                            </div>
+                            <p>
+                            The best diet chart plan for weight loss comprises foods that are already easily available.
+                        </p>
+                            <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="images/article5.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Weight loss journey</h2>
+                            <div class="blog-meta">
+                                <p><i class="far fa-list-alt"></i>Body Fitness</p>
+                                <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
+                                <p><i class="far fa-comments"></i>5</p>
+                            </div>
+                            <p>
+                                My best friend introduced me to the amazing HealthifyMe app. She knew I am a big-time foodie, and it was difficult for me to control my diet. 
+                                I weighed 68 kgs when I subscribed to HealthifyMe’s Smart Plan.
+                            </p>
+                            <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="Images/article8.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Food For Health</h2>
+                            <div class="blog-meta">
+                                <p><i class="far fa-list-alt"></i>Body Fitness</p>
+                                <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
+                                <p><i class="far fa-comments"></i>5</p>
+                            </div>
+                            <p>
+                            All you need to do is start eating right food. 
+                            For instance, a typical Indian meal is high in carbohydrates and sugar – we eat a lot of potatoes, rice, and sweets.
+                            </p>
+                            <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="img/about.png" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Exercise for Health</h2>
+                            <div class="blog-meta">
+                                <p><i class="far fa-list-alt"></i>Body Fitness</p>
+                                <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
+                                <p><i class="far fa-comments"></i>5</p>
+                            </div>
+                            <p>
+                            Get at least 150 minutes of moderate aerobic activity or 75 minutes of vigorous aerobic activity a week, or a combination of moderate and vigorous activity.
+                            </p>
+                            <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+
+
+        <!-- Footer Start -->
+        <div class="footer wow fadeIn" data-wow-delay="0.3s">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="footer-info">
+                        <a href="index.html" class="footer-logo">H<span>ealthify</span></a>
+                        <h3>2nd Floor, Nikhil Pride Building, Lokmanya Bal GangadharTilak Rd,Pune
+                        Maharashtra 411030
+                    </h3>
+                    <div class="footer-menu">
+                        <p>1800 419 9501</p>
+                        <p>support@healthifyme.com</p>
+                    </div>
+                        <div class="footer-social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        
+        <!-- Contact Javascript File -->
+        <script src="mail/jqBootstrapValidation.min.js"></script>
+        <script src="mail/contact.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+    </body>
+</html>
+
+
